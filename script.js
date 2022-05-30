@@ -7,11 +7,11 @@
 // Вставьте Рэп и Регги в начало массива.
 
 
-// let styles = ['Джаз','Блюз'];
-// styles.push('Рок-н-ролл');
-// styles[Math.floor(styles.length/2)] = 'Классика';
-// alert ( styles.shift());
-// styles.unshift('Рэп','Регги');
+let styles = ['Джаз','Блюз'];
+styles.push('Рок-н-ролл');
+styles[Math.floor(styles.length/2)] = 'Классика';
+alert ( styles.shift());
+styles.unshift('Рэп','Регги');
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -25,20 +25,20 @@
 // P.S. Ноль 0 – считается числом, не останавливайте ввод значений при вводе «0».
 
 
-// function sumInput() {
-// 	let num = 0;
-// 	let input = [];
-// 	while (true) {
-// 		let value = +prompt('Введите число?',0);
-// 		if (!value) break;
-// 		input.push(+num + value);
-// 	}
-// 	for (let sum of input) {
-// 		num += sum;
-// 	}
-// 	return num;
-// }
-// alert (sumInput());
+function sumInput() {
+	let num = 0;
+	let input = [];
+	while (true) {
+		let value = +prompt('Введите число?',0);
+		if (!value) break;
+		input.push(+num + value);
+	}
+	for (let sum of input) {
+		num += sum;
+	}
+	return num;
+}
+alert (sumInput());
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -47,4 +47,28 @@
 // Задача: найти непрерывный подмассив в arr, сумма элементов в котором максимальна.
 
 // Функция getMaxSubSum(arr) должна возвращать эту сумму.
+
+function getMaxSubSum (arr) {
+	sum = 0;
+	max = 0;
+	for ( let i of arr) {
+		sum += i;
+		max = Math.max (max,sum);
+		if (sum < 0) sum = 0;
+	}
+	return max;
+}
+
+////////////////////////////////////////////////////////////////////////
+
+function getMaxSubSum (arr) {
+	sum = 0;
+	max = 0;
+	for ( let num of arr) {
+		sum  = (sum + num) > 0 ? sum + num : 0;
+		max = sum > max ? sum : max;
+	}
+	return max;
+}
+
 
