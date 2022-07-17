@@ -1,74 +1,152 @@
-// Давайте произведём 5 операций с массивом.
+// const addMovieBtn = document.getElementById('add-movie-btn');
+// const searchBtn = document.getElementById('search-btn');
+// const movies = [];
 
-// Создайте массив styles с элементами «Джаз» и «Блюз».
-// Добавьте «Рок-н-ролл» в конец.
-// Замените значение в середине на «Классика». Ваш код для поиска значения в середине должен работать для массивов с любой длиной.
-// Удалите первый элемент массива и покажите его.
-// Вставьте Рэп и Регги в начало массива.
+// function addMovieHandler () {
+// 	const title = document.getElementById('title').value;
+// 	const extraName = document.getElementById('extra-name').value;
+// 	const extraValue = document.getElementById('extra-value').value;
+
+// 	if (title.trim() === '' || extraName.trim() === '' || extraValue.trim() === '') {
+// 		return 
+// 	} 
+
+// 	const movie = {
+// 		title,
+// 		[extraName]: extraValue
+// 	}
+
+// 	movies.push(movie)
+// 	console.log (movies)
+// 	renderMovies()
+// }
+
+// addMovieBtn.addEventListener('click', addMovieHandler);
+// searchBtn.addEventListener('click', searchMovieHandler);
+
+// function renderMovies (filterTitle = '') {
+// 	const movieList = document.getElementById('movie-list');
+
+// 	if (movies.length > 0) {
+// 		movieList.classList.add('visible');
+// 	} else {
+// 		movieList.classList.remove('visible');
+// 		return 
+// 	}
+
+// 	movieList.innerHTML = '';
 
 
-let styles = ['Джаз','Блюз'];
-styles.push('Рок-н-ролл');
-styles[Math.floor(styles.length/2)] = 'Классика';
-alert ( styles.shift());
-styles.unshift('Рэп','Регги');
+// 	const filteredMovies = filterTitle ? movies.filter(item => {
+// 	return item.title.includes(filterTitle)
+// 	}) : movies;
 
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+
+// 	filteredMovies.forEach(movie => {
+// 		const element = document.createElement('li');
+// 		let text = movie.title
+// 		for (const key in movie) {
+// 			if (key != 'title') {
+// 				text = text + `<br>${key}:${movie[key]}`
+// 			}
+// 		}
+// 		element.innerHTML = text;
+// 		movieList.append(element);
+// 	})
+// }
+
+// function searchMovieHandler () {
+// 	const filterTitle = document.getElementById('filter-title').value;
+// 	renderMovies(filterTitle)
+// }
 
 
-// Напишите функцию sumInput(), которая:
-
-// Просит пользователя ввести значения, используя prompt и сохраняет их в массив.
-// Заканчивает запрашивать значения, когда пользователь введёт не числовое значение, пустую строку или нажмёт «Отмена».
-// Подсчитывает и возвращает сумму элементов массива.
-// P.S. Ноль 0 – считается числом, не останавливайте ввод значений при вводе «0».
 
 
-function sumInput() {
-	let num = 0;
-	let input = [];
-	while (true) {
-		let value = +prompt('Введите число?',0);
-		if (!value) break;
-		input.push(+num + value);
+
+
+
+
+
+
+
+const addMovieBtn = document.getElementById('add-movie-btn');
+const searchBtn = document.getElementById('search-btn');
+const movies = [];
+
+
+function addMovieHandler() {
+	const title = document.getElementById('title').value;
+	const extraName = document.getElementById('extra-name').value;
+	const extraValue = document.getElementById('extra-value').value;
+
+	if (title.trim() === '' || extraName.trim() === '' || extraValue.trim() === '') {
+		return
 	}
-	for (let sum of input) {
-		num += sum;
+
+	const movie = {
+		title,
+		[extraName]: extraValue
 	}
-	return num;
+
+	movies.push(movie)
+	renderMovies()
 }
-alert (sumInput());
 
-///////////////////////////////////////////////////////////////////////////////////////////////
+addMovieBtn.addEventListener('click', addMovieHandler);
+searchBtn.addEventListener('click', searchMovieHandler);
 
-// На входе массив чисел, например: arr = [1, -2, 3, 4, -9, 6].
+function renderMovies(filterTitle = '') {
+	const movieList = document.getElementById('movie-list');
 
-// Задача: найти непрерывный подмассив в arr, сумма элементов в котором максимальна.
-
-// Функция getMaxSubSum(arr) должна возвращать эту сумму.
-
-function getMaxSubSum (arr) {
-	sum = 0;
-	max = 0;
-	for ( let i of arr) {
-		sum += i;
-		max = Math.max (max,sum);
-		if (sum < 0) sum = 0;
+	if (movies.length > 0) {
+		movieList.classList.add('visible')
+	} else {
+		movieList.classList.remove('visible')
+		return
 	}
-	return max;
+
+	movieList.innerHTML = '';
+
+	const filteredMovies = filterTitle ? movies.filter(item => {
+		return item.title.includes(filterTitle)
+	}) : movies;
+
+	filteredMovies.forEach(movie => {
+		const element = document.createElement('li');
+		let text = movie.title
+		for (const key in movie) {
+			if (key != 'title') {
+				text = text + `<br> ${key}:${movie[key]}`
+			}
+		}
+		element.innerHTML = text;
+		movieList.append(element)
+	})
 }
 
-////////////////////////////////////////////////////////////////////////
-
-function getMaxSubSum (arr) {
-	sum = 0;
-	max = 0;
-	for ( let num of arr) {
-		sum  = (sum + num) > 0 ? sum + num : 0;
-		max = sum > max ? sum : max;
-	}
-	return max;
+function searchMovieHandler() {
+	const filterTitle = document.getElementById('filter-title').value;
+	renderMovies(filterTitle);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
